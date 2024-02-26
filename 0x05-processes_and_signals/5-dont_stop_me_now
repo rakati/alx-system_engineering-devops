@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# terminate program using kill and pidof
+kill -SIGTERM "$(ps -x | pgrep -f beyond)"
