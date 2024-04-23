@@ -8,8 +8,8 @@ else
 	username=$3
 	if [ "$4" ]; then
 		ssh_path=$4
-		scp -i "${ssh_path}" -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "${src_path}" "${username}@${ip}:${ssh_path}"
+		scp -i "${ssh_path}" -o StrictHostKeyChecking=no "${src_path}" "${username}@${ip}:${ssh_path}"
 	else
-		scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "${src_path}" "${username}@${ip}:${ssh_path}"
+		scp -o StrictHostKeyChecking=no "${src_path}" "${username}@${ip}:${ssh_path}"
 	fi
 fi
