@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # install nginx and expose port 80, serve simple page with msg.
+apt-get update
 apt-get install -y nginx
-echo "Hello World!" > /var/www/html/index.nginx-debian
+echo "Hello World!" > /var/www/html/index.html
 service nginx start
