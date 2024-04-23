@@ -13,4 +13,3 @@ else
 		scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "${src_path}" "${username}@${ip}:${ssh_path}"
 	fi
 fi
-
