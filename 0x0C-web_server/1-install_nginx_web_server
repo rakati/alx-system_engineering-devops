@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# install nginx and expose port 80, serve simple page with msg.
+# install nginx and serve a simple page.
 apt-get update
 apt-get install -y nginx
 echo "Hello World!" > /var/www/html/index.html
