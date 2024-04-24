@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# connect to ny remote 54.209.235.93 using private key
+ssh ubuntu@54.209.235.93 -i ~/.ssh/school
