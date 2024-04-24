@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# install nginx and serve a simple page.
+apt-get update
+apt-get install -y nginx
+echo "Hello World!" > /var/www/html/index.html
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+to_replace="location /redirect_me {\
+    return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\
+}\
+error_page 404 /404.html;\
+location = /404.html {\
+    root /var/www/html;\
+    internal;\
+}"
+sed -i.bak "s@# pass PHP scripts to FastCGI server@$to_replace@" /etc/nginx/sites-available/default
+service nginx restart
