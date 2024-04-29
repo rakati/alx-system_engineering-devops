@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# install nginx and serve a simple page.
+apt-get update
+apt-get install -y nginx
+echo "Hello World!" > /var/www/html/index.html
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+x_server="03-$( hostname | cut -d '-' -f 2- )"
+to_replace="add_header X-Served-By $x_server;\n\
+location /redirect_me {\n\
+    return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\
+}\n\
+\n\
+error_page 404 /404.html;\n\
+\n\
+location = /404.html {\n\
+    root /var/www/html;\n\
+    internal;\n\
+}\n\
+# pass PHP scripts to FastCGI server\n\
+"
+sed -i "s@# pass PHP scripts to FastCGI server@$to_replace@g" /etc/nginx/sites-available/default
+service nginx restart
+
