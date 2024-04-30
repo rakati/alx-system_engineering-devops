@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# install HAproxy and config to load traffic to our web-1 and web-2 servers
+# using RoundRobin technique
+apt-get update
+apt-get install -y haproxy
+
+# Enable HAproxy init script
+echo "ENABLED=1" >>  /etc/default/haproxy
+
+echo "
+frontend  nouhaddou-frontend
+        bind *:80
+        mode http
+        default_backend nouhaddou-backend
+backend nouhaddou-backend
+        balance roundrobin
+        server 271316-web-01 54.209.235.93:80 check
+        server 271316-web-02 54.160.118.33:80 check
+" >> /etc/haproxy/haproxy.cfg
+
+sudo service haproxy restart
