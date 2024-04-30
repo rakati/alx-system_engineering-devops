@@ -1,5 +1,15 @@
-# Puppet configuration for configuring nginx server
+# Puppet configuration for adding custom request header to nginx server
 
-http {
-  add_header X-Served-By $hostname;
+package { 'nginx':
+  ensure => 'installed',
+}
+
+exec { 'custom request header':
+  command  => 'sudo sed -i "/server {/a \ \ \ \ add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default',
+  provider => shell
+}
+
+service { 'nginx':
+  ensure  => running,
+  require => Package['nginx'],
 }
