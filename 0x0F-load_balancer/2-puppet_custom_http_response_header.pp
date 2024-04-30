@@ -6,7 +6,7 @@ package { 'nginx':
 
 exec { 'custom request header':
   command  => 'sudo sed -i "/server {/a \ \ \ \ add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default',
-  provider => shell
+  provider => shell,
 }
 
 service { 'nginx':
