@@ -5,11 +5,8 @@ package { 'nginx':
 }
 
 exec { 'custom request header':
-  command  => 'sudo sed -i "/server {/a \ \ \ \ add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default',
+  command  => 'sudo sed -i "/server {/a \ \ \ \ add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default
+	sudo service nginx restart',
   provider => shell,
-}
-
-service { 'nginx':
-  ensure  => running,
   require => Package['nginx'],
 }
