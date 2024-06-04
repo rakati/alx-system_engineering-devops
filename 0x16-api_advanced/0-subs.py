@@ -10,6 +10,6 @@ def number_of_subscribers(subreddit):
                         .format(subreddit),
                         headers={"User-Agent": "ALX-API-Advanced-Script"},
                         allow_redirects=False)
-    if resp.status_code == 200:
+    if resp.status_code < 300:
         return resp.json()['data']['subscribers']
     return 0
