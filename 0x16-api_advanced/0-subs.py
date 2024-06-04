@@ -20,10 +20,13 @@ def number_of_subscribers(subreddit):
         - Number of subscribers to the subreddit or 0 if
           the subreddit is invalid.
     """
-    resp = requests.get(
-        "https://www.reddit.com/r/{}/about.json".format(subreddit),
-        headers={"User-Agent": "ALX-API-Advanced-Script"},
-        allow_redirects=False
-    )
+    try:
+        resp = requests.get(
+            "https://www.reddit.com/r/{}/about.json".format(subreddit),
+            headers={"User-Agent": "ALX-API-Advanced-Script"},
+            allow_redirects=False
+        )
+    except requests.exceptions.RequestException:
+        return 0
 
     return 0 if resp.status_code != 200 else resp.json()['data']['subscribers']
