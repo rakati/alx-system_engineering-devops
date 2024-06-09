@@ -1,27 +1,25 @@
 ### Incident Report: HPC Resource Allocation Issue
 
+The following is the incident report for the Simlab HPC Cluster infrastructure outage that occurred between June 3 and June 4, 2024. We understand this resource allocation issue has impacted our valued users, and we apologize to everyone who was affected.
+
 #### Issue Summary
 
-**Duration:** June 1, 2024, 09:00 PM - June 4, 2024, 03:10 AM (GMT+1)
-
-**Impact:** The HPC cluster experienced significant job queuing delays. Approximately 89% of users were affected, facing extended wait times for their jobs to be executed. The root cause was a misconfiguration allowing users to reserve unlimited memory, making the rule limiting the number of CPUs per user useless, leading to resource starvation.
-
-**Root Cause:** A configuration bug permitted users to reserve more than the allowed CPUs by specifying more memory not CPUs, leading to CPU and memory resource depletion by a single long-running job.
+From 09:00 PM to 03:10 AM (GMT+1) The HPC cluster experienced significant job queuing delays. Approximately 89% of users were affected, facing extended wait times for their jobs to be executed. The root cause was a configuration bug permitted users to reserve more than the allowed CPUs by specifying more memory not CPUs, leading to CPU and memory resource depletion by a single long-running job.
 
 #### Timeline
 
-- **June 1, 2024, 09:00 PM:** Issue detected via user complaints about excessive job queue times.
-- **June 1, 2024, 09:05 PM:** Monitoring alerts confirmed unusual CPU and memory allocation patterns.
-- **June 1, 2024, 09:10 PM:** Initial investigation focused on job scheduling algorithms and hardware performance metrics.
-- **June 1, 2024, 09:50 PM:** Assumptions made about potential hardware failure; hardware diagnostics commenced.
-- **June 1, 2024, 11:09 PM:** Misleading investigation into potential network latency issues.
-- **June 1, 2024, 11:43 PM:** Escalated to the HPC systems engineering team.
-- **June 2, 2024, 01:00 AM:** Detailed analysis of job logs and user configurations began.
-- **June 2, 2024, 02:34 AM:** Root cause identified as a configuration error allowing unlimited memory reservation per CPU.
-- **June 3, 2024, 02:51 AM:** Configuration adjusted to enforce memory limits per CPU, long-running job canceled.
-- **June 3, 2024, 03:00 AM:** Job scheduler and resource manager restarted with new settings.
-- **June 3, 2024, 03:08 AM:** Backup list of queued jobs applied.
-- **June 3, 2024, 03:14 AM:** Normal operations resumed; issue resolved.
+- **09:00 PM:** Issue detected via user complaints about excessive job queue times.
+- **09:05 PM:** Monitoring alerts confirmed unusual CPU and memory allocation patterns.
+- **09:10 PM:** Initial investigation focused on job scheduling algorithms and hardware performance metrics.
+- **09:50 PM:** Assumptions made about potential hardware failure; hardware diagnostics commenced.
+- **11:09 PM:** Misleading investigation into potential network latency issues.
+- **11:43 PM:** Escalated to the HPC systems engineering team.
+- **01:00 AM:** Detailed analysis of job logs and user configurations began.
+- **02:34 AM:** Root cause identified as a configuration error allowing unlimited memory reservation per CPU.
+- **02:51 AM:** Configuration adjusted to enforce memory limits per CPU, long-running job canceled.
+- **03:00 AM:** Job scheduler and resource manager restarted with new settings.
+- **03:08 AM:** Backup list of queued jobs applied.
+- **03:14 AM:** Normal operations resumed; issue resolved.
 
 #### Root Cause and Resolution
 
