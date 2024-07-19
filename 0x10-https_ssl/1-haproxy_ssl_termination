@@ -42,5 +42,5 @@ frontend  nouhaddou-frontend
         default_backend nouhaddou-backend
 backend nouhaddou-backend
         balance roundrobin
-        server 271316-web-01 54.209.235.93:80 check
-        server 271316-web-02 54.160.118.33:80 check
+        server 271316-web-01 100.25.161.237:80 check
+        server 271316-web-02 54.89.27.225:80 check
